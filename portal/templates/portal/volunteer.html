@@ -1,0 +1,75 @@
+{% extends 'portal/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container py-2">
+    <div class=" text-center  text-dark mb-2">
+        <h2>Unsere Volunteers <span class="fi fi-de"></h2>
+        <div class="mx-auto bg-warning rounded" style="width: 320px; height: 4px;"></div>
+    </div>
+    <div class="row text-center">
+        <div class="col-md-4 mb-2"></div>
+        <div class="col-md-4 mb-2">
+            <div class="card shadow border-0 rounded-4 overflow-hidden mt-4 p-3">
+                <img src="{% static 'portal/images/avatarka.jpg' %}" class="img-fluid rounded-circle shadow-sm border border-white border-2 mx-auto avatar-frame"
+                 style="width: 175px; height:175px; object-fit: cover">
+                <h3 class="text-muted text-center lead mt-2">Unsere Leiterin: Frau Garcia </h3>
+                <a href="mailto:garcia@gmail.com">garcia@gmail.com</a>
+
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    <div class="row text-center">
+        <div class="col-md-6 mb-4 mt-2">
+            <div class="card shadow border-0 rounded-4 overflow-hidden mt-4 p-3">
+                <img src="{% static 'portal/images/fr2.jpg' %}" class="img-fluid rounded-circle shadow-sm border border-white border-4 mx-auto avatar-frame"
+                style="width: 150px; height:150px; object-fit: cover;">
+                <h3 class="text-muted lead text-center">Unsere Leiterin 2: Frau Schmek </h3>
+                <a href="mailto:franciskaschmek@gmail.com">franciskaschmek@gmail.com</a>
+                <h4 class="text-muted lead text-center">(Тимчасово працює в іншому місті. По всім питанням звертатися до фрау Гарсіі.)</h4>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4 mt-2">
+            <div class="card shadow border-0 rounded-4 overflow-hidden mt-4 p-3">
+                <img src="{% static 'portal/images/av_man3.jpg' %}" class="img-fluid rounded-circle shadow-sm border border-white border-4 mx-auto avatar-frame"
+                style="width: 150px; height:150px; object-fit: cover">
+                <h3 class="text-muted lead text-center">Unser Volunteer: Herr Schwarzkopf </h3>
+                <a href="mailto:schwarzkopf@gmail.com">schwarzkopf@gmail.com</a>
+
+                <div class="mt-2">
+                    <div><a href="tel:+4915563285198" class="ua-phone-link">WhatsApp: +49 15563285198</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+<style>
+    body {
+        background-color: #e3f2fd !important; /* Тот самый голубой фон */
+    }
+    .card {
+        transition: transform 0.3s;
+    }
+    .form-control:focus {
+        border-color: #ffc107;
+        box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+    }
+    .avatar-frame {
+         border:3px solid #add8e6;
+         padding: 5px;
+         border-radius: 50%;
+         box-shadow: 0 0 0 3px #191970;
+         filter: drop-shadow(0 0 8px rgba(25, 25, 112, 0.5));
+
+    }
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.0.0/css/flag-icons.min.css">
+</style>
+{% endblock content %}

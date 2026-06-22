@@ -1,0 +1,30 @@
+from django.urls import path
+from . import views
+
+app_name = 'portal'
+
+urlpatterns = [
+
+    # --- Hauptseite von Portal
+    path('',views.index,name='index'),
+    path('news/',views.news,name='news'),
+    path('main/',views.main,name='main'),
+    path('about/',views.about,name='about'),
+    path('remont/',views.remont,name='remont'),
+    path('putzplan/',views.putzplan,name='putzplan'),
+    path('volunteer/',views.volunteer,name='volunteer'),
+    path('utility/',views.utility,name='utility'),
+    path('change_duty_status/<int:pk>/',views.change_duty_status,name='change_duty_status'),
+
+    # --- Hausmasters interface ---
+    path('master_list/',views.master_list,name='master_list'),
+    path('master_list_arhiv/',views.master_list_arhiv,name='master_list_arhiv'),
+    path('complete_request/<int:pk>/',views.complete_request,name='complete_request'),
+    path('task_in_progress/',views.task_in_progress,name='task_in_progress'),
+    path('in_progress/<int:pk>/',views.in_progress,name='in_progress'),
+    path('task_cancel/<int:pk>/',views.task_cancel,name='task_cancel'),
+    path('main_for_masters/',views.main_for_masters,name='main_for_masters'),
+    path('canceled_tasks/',views.canceled_tasks,name='canceled_tasks'),
+
+]
+

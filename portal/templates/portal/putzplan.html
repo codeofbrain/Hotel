@@ -1,0 +1,95 @@
+{% extends 'portal/base.html' %}
+{% load string_extras %}
+
+{% block content %}
+<div class="container-fluid py-3 px-1">
+
+    <div class="text-center mb-2">
+        <h1 class="fw-bold text-primary display-4 mb-2">Putzplan</h1>
+        <p class="text-muted lead">Графік прибирання спільних зон / Dienstplan für Gemeinschaftsräume</p>
+        <div class="mx-auto bg-warning rounded" style="width: 600px; height: 4px;"></div>
+    </div>
+
+    <div class="d-flex justify-content-center gap-4 mb-4 fs-6 fw-medium">
+        <div><span class="badge bg-success-subtle border border-success text-success px-3 py-2">✓ Прибрано (Geputzt)</span></div>
+        <div><span class="badge bg-danger-subtle border border-danger text-danger px-3 py-2">✗ НЕ прибрано (Nicht geputzt)</span></div>
+        <div><span class="badge bg-light border text-muted px-3 py-2">Очикування (Warten)</span></div>
+        <div><span class="badge bg-warning-subtle border border-warning text-warning px-3 py-2">📅 Ваша кімната (Ihr Zimmer)</span></div>
+    </div>
+
+
+
+    <div class="card shadow border-0 rounded-4 overflow-hidden">
+
+            <table class="table table-sm table-bordered align-middle text-center mb-0 w-100" style="table-layout: fixed;">
+                <thead class="table-dark">
+                    <tr>
+                        <th class="p-2 align-middle" style="width: 130px; font-size: 0.9rem">
+                            Bereiche / Datum<br><small class="text-white-50">(ділянка / дата)</small>
+                        </th>
+                        {% for week in weeks %}
+                        <th class="p-2 align-middle" style="font-size: 0.9rem">
+                            {{ week.date_start|date:"d.m" }}<br>-<br>{{ week.date_end|date:"d.m" }}
+                        </th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in matrix %}
+                    <tr>
+                        <th class="p-2 align-middle" style="font-size: 0.9rem;">
+                            {{ row.area.name_de }}<br>
+                            <small class="text-muted fw-normal" style="font-size: 0.75rem;">({{ row.area.name_ua }})</small>
+                        </th>
+
+                        {% for week in weeks %}
+                            {# Вытаскиваем объект дежурства по дате из нашего словаря #}
+                            {% with duty=row.duties_by_week|get_item:week.date_start %}
+                            <td class="p-2
+                                {% if duty.room_number == room_number and duty.status == 'waiting' %}table-warning  border-2  border-warning  fw-bold
+                                {% elif duty.status == 'done' %}table-success text-success fw-bold
+                                {% elif duty.status == 'failed' %}table-danger text-danger fw-bolder text-decoration-line-through
+                                {% endif %}"
+                            >
+                                {% if duty %}
+                                    {% if user.is_superuser %}
+                                        <a href="{% url 'portal:change_duty_status' duty.pk %}" class="text-decoration-none text-reset p-2 rounded hover-trigger" title="Change status" style="display: inline-block;">
+                                           {{duty.room_number}}
+                                        </a>
+                                    {% else %}
+                                        {{duty.room_number}}
+                                    {% endif %}
+
+                                {% else %}
+                                    <span class="text-muted opacity-25">—</span>
+                                {% endif %}
+                            </td>
+                            {% endwith %}
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+    </div>
+</div>
+<style>
+    body {
+        background-color: #e3f2fd !important; /* Тот самый голубой фон */
+    }
+    .card {
+        transition: transform 0.3s;
+    }
+    .form-control:focus {
+        border-color: #ffc107;
+        box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+    }
+
+    .hover-trigger:hover {
+    background-color: rgba(0,0,0,0.08);
+    cursor: pointer;
+    }
+</style>
+
+
+{% endblock %}

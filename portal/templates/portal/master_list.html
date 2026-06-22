@@ -1,0 +1,42 @@
+{% extends 'portal/base.html' %}
+{% block content %}
+{% load string_extras %}
+
+<div class="containter-fluid text-center py-3 ">
+    <h2 class="text-primary text-center mt-3">📝 Unsere Bruche: </h2>
+
+        <div class="card mb-3 shadow-sm mt-4">
+            <table class="table table-hover">
+                <thead class="table-success">
+                    <tr>
+                        <th>Room</th>
+                        <th>Name</th>
+                        <th>Problem</th>
+                        <th>Date</th>
+                        <th>Dejstvie</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for el in active_requests %}
+                        <tr>
+                            <td>{{el.user_name.username | split_username:0}}</td>
+                            <td>{{el.user_name.username | split_username:1}}</td>
+                            <td>{{el.description}}</td>
+                            <td>{{el.date_added | date:"d.m.Y -H:i"}}</td>
+                            <td><a href="{% url 'portal:in_progress' el.id %}" class="btn btn-warning btn-sm">In progress</a></td>
+
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center">Kein problem 👍</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+</div>
+<div class="containter-fluid text-center py-3 ">
+    <a class="btn btn-center btn-gradient shadow rounded-2 mt-2"
+                 href="{% url 'portal:main_for_masters' %}">Zurück</a>
+
+{% endblock content %}

@@ -1,0 +1,91 @@
+
+
+
+{% extends 'portal/base.html' %}
+{% load static %}
+{% block extra_css %}
+
+<style>
+    body {
+    background-image:
+    linear-gradient(rgba(0,0,0,0.7),
+    rgba(0,0,0,0.7)),
+    url("{% static 'portal/uhr.jpg' %}");
+    background-size: cover !important;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    }
+
+    .admin-link {
+        border: 1px solid rgba(255,255,255, 0.5);
+        padding: 5px 12px;
+        border-radius: 20px;
+        color: white !important;
+        text-decoration: none;
+        transition: 0.3s;
+        background: rgba(255,255,255,0.1;
+        display: inline-block;
+        }
+
+    .admin-link:hover {
+        background: rgba(255,255,255,0.3);
+        border-color: white;
+        }
+
+
+</style>
+
+{% endblock %}
+{% block page_header %}
+
+    <div class="p-4 mb-5 bg-primary bg-gradient text-white border rounded-5 shadow-lg">
+        <div class="container-fluid ру-3">
+            <h1 class="display-2 text-warning text-center text-gradient fw-bolder">Herzlich willkommen.</h1>
+            <p class="lead text-white text-center">Here you can read last news or give us your claim .</p>
+                {% if user.is_authenticated %}
+                    <div class="text-center mt-4">
+                        <a class="btn btn-warning btn-gradient btn-lg mt-3"
+                         href="{% url 'portal:main' %}">Weiter &raquo;</a>
+                    </div>
+                {% else %}
+                    <div class="text-center mt-4">
+                        <a class="btn btn-warning btn-gradient btn-lg mt-2"
+                         href="{% url 'accounts:register' %}">Registrieren &raquo;</a>
+                    </div>
+                {% endif %}
+            {% if user.is_active == False %}
+                <h6 class="text-center text-warning text-gradient mt-2">Nur für Bewohner und Personal.</h6>
+            {% endif %}
+        </div>
+    </div>
+    {% if messages %}
+        <div style="margin: 20px 0;"
+             {% for message in messages %}
+                 <div class="alert alert-{{message.tags}} alert-dismissible fade show text-center" role="alert">
+                     {{message}}
+                 </div>
+             {% endfor %}
+        </div>
+    {% endif %}
+    <footer class="text-center mt-3 py-3 text-muted">
+        {% if user.is_staff %}
+            <a href="/admin" class="admin-link">⚙ Admin Panel</a>
+        {% elif not user.is_authenticated or user.is_active == False %}
+            <h4 class="text-center text-warning fw-bolder text-gradient">1.Registrieren👆</h4>
+            <h4 class="text-center text-warning fw-bolder text-gradient">2.Beim Administrator melden 👍</h4>
+        {% endif %}
+
+    </footer>
+
+<script>
+    setTimeout(function(){
+        let alerts = document.querySelectorAll('.alert');
+        console.log('alerts:',alerts.length)
+        alerts.forEach(function(alert) {
+            alert.style.display = 'none';
+
+        });
+    },10000);
+</script>
+{% endblock page_header %}

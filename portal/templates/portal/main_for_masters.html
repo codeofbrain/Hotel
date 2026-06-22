@@ -1,0 +1,47 @@
+{% extends 'portal/base.html' %}
+{% block content %}
+<div class="container py-5">
+    <h2 class="text-center text-primary mb-4">Bereich auswählen:</h2>
+
+    <div class="row g-4">
+        <!-- Каждая ссылка станет красивой кнопкой-карточкой -->
+
+        <div class="col-md-6">
+            <a href="{% url 'portal:master_list' %}" class="btn btn-outline-dark btn-lg w-100 py-4 shadow-sm border-2">
+                📰 Neue Aufgaben
+            </a>
+        </div>
+
+        <div class="col-md-6">
+            <a href="{% url 'portal:task_in_progress' %}" class="btn btn-outline-dark btn-lg w-100 py-4 shadow-sm border-2">
+                🛠 In progress
+            </a>
+        </div>
+
+        <div class="col-md-6">
+            <a href="{% url 'portal:master_list_arhiv' %}" class="btn btn-outline-dark btn-lg w-100 py-4 shadow-sm border-2">
+                🦾 Erledigte Aufgaben
+            </a>
+        </div>
+
+        <div class="col-md-6">
+            <a href="{% url 'portal:canceled_tasks' %}" class="btn btn-outline-dark btn-lg w-100 py-4 shadow-sm border-2">
+                🏷 Stornierte Aufgaben
+            </a>
+        </div>
+
+<style>
+    body {
+        /* Твой светло-серый фон, но чуть мягче */
+        background-color: #e3f2ffff !important;
+    }
+    /* Эффект при наведении на карточки */
+    .btn-outline-dark:hover {
+        transform: translateY(-5px);
+        transition: 0.3s;
+        background-color: #ffc107 !important; /* Наш фирменный желтый */
+        border-color: #ffc107 !important;
+        color: #000 !important;
+    }
+</style>
+{% endblock content %}

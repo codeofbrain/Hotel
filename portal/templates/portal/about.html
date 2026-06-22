@@ -1,0 +1,42 @@
+{% extends 'portal/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="about-page bg-light">
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-lg-8">
+
+                <div class="text-center mb-5">
+                    <h1 class="fw-bold text-primary display-4 mb-2">Über uns</h1>
+                    <div class="mx-auto bg-warning rounded" style="width: 250px; height: 4px;"></div>
+                </div>
+
+                <p class="lead text-muted lh-lg mb-4 fs-4 text-center" style="font-style: italic;">
+                    „Früher war dies ein Ort für Gäste. Heute ist es ein Ort für Menschen, die Schutz suchen – und hier eine neue Heimat finden.
+                </p>
+
+                <p class="text-dark lh-lg mb-4 fs-5">
+                    Hinter jedem von uns liegt ein langer Weg, gezeichnet von Unsicherheit und Abschied. In der „Goldenen Uhr“ haben wir nicht nur ein Dach über dem Kopf gefunden, sondern auch den Schutz, den wir so dringend brauchten. Mehr als nur Wohnraum: Die hellen Zimmer, die früher Touristen beherbergten, bieten uns jetzt den Raum, um zur Ruhe kommen und unser Leben neu zu ordnen. Hier im Restaurant Gäste feierten, kochen und planen wir heute gemeinsam unsere Zukunft in Deutschland.
+                </p>
+
+                <p class="text-dark lh-lg mb-5 fs-5 fw-medium text-center text-primary">
+                    Unsere Dankbarkeit: Wir sind der Stadt Ravensburg und allen deutschen Menschen zutiefst dankbar für die freundliche Aufnahme. Die „Goldene Uhr“ ist für uns ein Symbol für Gastfreundschaft und Solidarität geworden. Auch wenn wir unsere Heimat im Herzen tragen, sind wir stolz darauf, Teil der Gemeinschaft in der Saarlandstraße zu sein. Wir füllen dieses geschichtsträchtige Haus mit neuem Leben, neuen Sprachen und der Hoffnung auf eine friedliche Zukunft.
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="about-image-banner" style="
+        background: url('{% static 'portal/images/bej.jpg' %}') no-repeat center center;
+        background-size: cover;
+        height: 75vh; /* Занимает ровно половину высоты экрана */
+        width: 100%;
+        box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.3); /* Мягкая тень сверху, чтобы отделить от текста */
+    ">
+    </div>
+
+</div>
+{% endblock %}

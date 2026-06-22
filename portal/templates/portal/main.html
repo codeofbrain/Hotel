@@ -1,0 +1,59 @@
+{% extends 'portal/base.html' %}
+{% block content %}
+<div class="container py-5">
+    <h2 class="text-center text-primary mb-4">Оберіть потрібний розділ:</h2>
+
+    <div class="row g-4">
+        <div class="col-md-6">
+            <a href="{url 'portal:putzplan'}" class="btn btn-outline-dark btn-lg w-100 py-4 shadow-sm border-2">
+                📜 Правила проживання
+            </a>
+        </div>
+
+        <div class="col-md-6">
+            <a href="{% url 'portal:news' %}" class="btn btn-outline-dark btn-lg w-100 py-4 shadow-sm border-2">
+                📰 Дошка оголошень
+            </a>
+        </div>
+
+        <div class="col-md-6">
+            <a href="{% url 'portal:putzplan' %}" class="btn btn-outline-dark btn-lg w-100 py-4 shadow-sm border-2">
+                📊 Графік чергувань
+            </a>
+        </div>
+
+        <div class="col-md-6">
+            <a href="{% url 'portal:volunteer' %}" class="btn btn-outline-dark btn-lg w-100 py-4 shadow-sm border-2">
+                🤝 Наші волонтери
+            </a>
+        </div>
+
+
+
+        <div class="col-md-6">
+            <a href="{% url 'portal:remont' %}" class="btn btn-outline-dark btn-lg w-100 py-4 shadow-sm border-2">
+               🛠 Заявки на ремонт
+            </a>
+        </div>
+
+        <div class="col-md-6">
+            <a href="{% url 'portal:utility' %}" class="btn btn-outline-dark btn-lg w-100 py-4 shadow-sm border-2">
+                📎 Корисні посилання и телефони
+            </a>
+        </div>
+
+<style>
+    body {
+        /* Твой светло-серый фон, но чуть мягче */
+        background-color: #e3f2ffff !important;
+    }
+    /* Эффект при наведении на карточки */
+    .btn-outline-dark:hover {
+        transform: translateY(-5px);
+        transition: 0.3s;
+        background-color: #ffc107 !important; /* Наш фирменный желтый */
+        border-color: #ffc107 !important;
+        color: #000 !important;
+    }
+</style>
+{% endblock content %}
