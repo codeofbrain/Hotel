@@ -42,7 +42,7 @@ The portal is split into logical workflows tailored for three distinct user role
 
 2. **Create and activate a virtual environment:**
      python -m venv my_env
-     # For Windows:
+     For Windows:
      my_env\Scripts\activate
 
 3. **Install dependencies:**
