@@ -1,14 +1,14 @@
-
+{% load django_bootstrap5 %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Our Hotel-Main{% endblock %}</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    {% load django_bootstrap5 %}
+
+
     {% bootstrap_css %}
-    {% bootstrap_javascript %}
+
     {% load string_extras %}
     <style>
         body { background-color: #f8f9fa;
@@ -21,7 +21,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.0.0/css/flag-icons.min.css">
 </head>
-
+{% bootstrap_javascript %}
 <body>
 
 
@@ -33,14 +33,14 @@
             {% else %}
                 <form action="{% url 'accounts:login' %}" method="post" class="d-line">
                     {% csrf_token %}
-                    {% bootstrap_button button_type="submit" content='Log in' button="btn-outline-warning btn-sm ms-2"%}
+                    {% bootstrap_button button_type="submit" content='Einloggen' button="btn-outline-warning btn-sm ms-2"%}
                 </form>
             {% endif %}
 
             {% if user.is_authenticated %}
                 <form action="{% url 'accounts:logout' %}" method="post" class="d-line">
                     {% csrf_token %}
-                    {% bootstrap_button button_type="submit" content='Log out' button="btn-outline-warning btn-sm ms-2"%}
+                    {% bootstrap_button button_type="submit" content='Ausloggen' button="btn-outline-warning btn-sm ms-2"%}
                 </form>
             {% endif %}
             {% if user.is_staff %}
@@ -49,7 +49,7 @@
             {% endif %}
 
             <div class="navbar-nav ms-auto">
-                <a class="nav-link fw-semibold text-warning" href="{% url 'portal:about' %}">About us👨‍👨‍👧‍👦 </a>
+                <a class="nav-link fw-semibold text-warning" href="{% url 'portal:about' %}">Über uns 👨‍👨‍👧‍👦 </a>
 
             </div>
 
@@ -64,6 +64,7 @@
         {% endblock %}
     </div>
 
-
+{% load django_bootstrap5 %}
+{% bootstrap_javascript %}
 
 </body>

@@ -1,14 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
-from .models import Announcement, MaintenanceRequest, CleaningDuty,CleaningArea, CustomUser
-from .forms import MaintenanceForm, AnnouncementForm
+from .models import Announcement, MaintenanceRequest, CleaningDuty,CleaningArea, CustomUser, AnnouncementComments
+from .forms import MaintenanceForm, AnnouncementForm, AnnouncementCommentsForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.decorators import user_passes_test
 from datetime import date
-
+from django.http import Http404
 def news(request):
     news = Announcement.objects.all().order_by('-data_posted')
+    comments_form = AnnouncementCommentsForm()
     username_parts = request.user.username.split('_')
     room_number = username_parts[0] if len(username_parts) > 1 else '_'
     user_name = username_parts[1] if len(username_parts) > 1 else '_'
@@ -19,14 +20,32 @@ def news(request):
             announcement.owner = request.user
             announcement.room_number = room_number
             announcement.save()
-
             return redirect('portal:news')
-
     else:
         form = AnnouncementForm()
 
-    context = {'form': form, 'user_name': user_name, 'room_number': room_number,'news':news}
+    context = {'form': form, 'comments_form': comments_form, 'user_name': user_name, 'room_number': room_number,'news':news}
     return render(request,'portal/news.html',context)
+
+
+def comments(request,pk):
+    anzeige = Announcement.objects.get(id=pk)
+    if request.method != 'POST':
+        form = AnnouncementCommentsForm()
+    else:
+        form = AnnouncementCommentsForm(data=request.POST)
+        if form.is_valid():
+            new_comment = form.save(commit=False)
+            new_comment.announcement = anzeige
+            new_comment.owner = request.user
+            new_comment.save()
+            return redirect('portal:news')
+    context = {'anzeige':anzeige,'form':form}
+    return redirect('portal:news')
+
+
+
+
 
 
 
@@ -53,7 +72,7 @@ def utility(request):
 
 
 @user_passes_test(lambda u: u.is_authenticated and u.bewohner)
-def remont(request):
+def maintenance(request):
     username_parts = request.user.username.split('_')
     room_number = username_parts[0] if len(username_parts) > 1 else '_'
     user_name = username_parts[1] if len(username_parts) > 1 else '_'
@@ -65,14 +84,14 @@ def remont(request):
             repair_request.user_name = request.user
             repair_request.room_number = room_number
             repair_request.save()
-            messages.success(request, 'Ваша заявка принята')
-            return redirect('portal:remont')
+            messages.success(request, 'Ihre Anfrage wurde erfolgreich übermittelt')
+            return redirect('portal:maintenance')
 
     else:
         form = MaintenanceForm(initial={'room_number': room_number, 'user_name': user_name})
 
     context = {'form':form,'user_name':user_name,'room_number':room_number,'user_requests':user_requests}
-    return render(request,'portal/remont.html',context)
+    return render(request,'portal/maintenance.html',context)
 
 
 
