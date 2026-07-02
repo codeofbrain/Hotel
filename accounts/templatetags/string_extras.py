@@ -17,7 +17,3 @@ def split_username(value,ind):
 @register.filter(name='get_item')
 def get_item(dictionary,key):
     return dictionary.get(key)
-
-@register.filter()
-def nums_comments(comments):
-    return len(comments)

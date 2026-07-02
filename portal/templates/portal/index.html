@@ -42,7 +42,7 @@
     <div class="p-4 mb-5 bg-primary bg-gradient text-white border rounded-5 shadow-lg">
         <div class="container-fluid ру-3">
             <h1 class="display-2 text-warning text-center text-gradient fw-bolder">Herzlich willkommen.</h1>
-            <p class="lead text-white text-center">Tauchen Sie ein in das pulsierende Leben unseres Hotels.</p>
+            <p class="lead text-white text-center">Here you can read last news or give us your claim .</p>
                 {% if user.is_authenticated %}
                     <div class="text-center mt-4">
                         <a class="btn btn-warning btn-gradient btn-lg mt-3"
@@ -72,8 +72,8 @@
         {% if user.is_staff %}
             <a href="/admin" class="admin-link">⚙ Admin Panel</a>
         {% elif not user.is_authenticated or user.is_active == False %}
-            <h4 class="text-center text-warning fw-bolder text-gradient">1. Registrieren👆</h4>
-            <h4 class="text-center text-warning fw-bolder text-gradient">2. Beim Administrator melden 👍</h4>
+            <h4 class="text-center text-warning fw-bolder text-gradient">1.Registrieren👆</h4>
+            <h4 class="text-center text-warning fw-bolder text-gradient">2.Beim Administrator melden 👍</h4>
         {% endif %}
 
     </footer>

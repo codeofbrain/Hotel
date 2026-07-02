@@ -13,20 +13,20 @@
                 </div>
 
             </div>
-            <div class="text-dark text-center mt-4 border-0 shadow-sm rounded-4">
+            <div class="text-warning text-center mt-4 border-0 shadow-sm rounded-4">
                 <i class="bi bi-info-circle me-2"></i>
-                Wir kümmern uns darum! 💪🙂
+                Ви тримайтесь тут, гарного вам настрою!
             </div>
 
             <table class="table table-hover mt-4">
                 <thead class="table-success">
                     <tr>
-                        <th>Zimmer</th>
-                        <th>Name</th>
-                        <th>Problem</th>
-                        <th>Datum</th>
-                        <th>Status</th>
-                        <th>Abbrechen</th>
+                        <th>Кімната</th>
+                        <th>Ім'я</th>
+                        <th>Проблема</th>
+                        <th>Дата</th>
+                        <th>Статус</th>
+                        <th>Відміна</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,32 +59,32 @@
         <div class="col-md-6 offset-md-1">
             <div class="card shadow-lg border-2 rounded-4">
                 <div class="card-header bg-warning text-dark text-center py-3 rounded-top-4">
-                    <h3 class="mb-0 fw-bold">🛠 Schaden melden</h3>
+                    <h3 class="mb-0 fw-bold">🛠 Заявка на ремонт</h3>
                 </div>
                 <div class="card-body p-4 bg-primary">
                     <form method="post">
                         {% csrf_token %}
 
                             <div class="form-group mb-3">
-                                <label class="form-label fw-semibold">Zimmernummer</label>
+                                <label class="form-label fw-semibold">Номер кімнаты</label>
                                     <input type="text" name="room_number" value="{{room_number}}" class="form-control bg_light" readonly>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label fw-semibold">Name</label>
+                                <label class="form-label fw-semibold">Ім'я</label>
                                     <input type="text" name="user_name" value="{{user_name}}" class="form-control bg_light" readonly>
                             </div>
 
 
                         <div class="mb-4">
-                            <label class="form-label fw-semibold">Was ist passiert?</label>
-                            <textarea name="description" class="form-control" rows="5" placeholder="Problem beschreiben..." required></textarea>
+                            <label class="form-label fw-semibold">Що сталось?</label>
+                            <textarea name="description" class="form-control" rows="5" placeholder="Опишіть проблему..." required></textarea>
                         </div>
 
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-warning btn-lg fw-bold shadow-sm">
-                                Anfrage senden
+                                Отправить заявку
                             </button>
-                            <a href="{% url 'portal:main' %}" class="btn btn-outline-secondary btn-warning">Zurück</a>
+                            <a href="{% url 'portal:main' %}" class="btn btn-outline-secondary btn-warning">Назад</a>
                         </div>
                     </form>
 
